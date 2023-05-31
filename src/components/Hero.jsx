@@ -1,9 +1,6 @@
 import React from "react";
-import SplitType from "split-type";
 
 const Hero = () => {
-  const text = new SplitType("#text");
-
   return (
     <div className="max-w-[100$%] m-auto mt-20 grid lg:grid-cols-2">
       <div>

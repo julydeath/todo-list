@@ -4,7 +4,6 @@ import Hero from "./components/Hero";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import { Routes, Route } from "react-router-dom";
-import Last from "./components/Last";
 
 function App() {
   return (
