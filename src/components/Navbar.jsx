@@ -48,7 +48,7 @@ const Navbar = () => {
       <div
         className={
           nav
-            ? "w-[100%] h-full top-0 left-0 fixed text-black bg-slate-900 text-center ease-in-out duration-1000"
+            ? "w-[100%] h-full top-0 left-0 fixed text-black bg-black text-center ease-in-out duration-1000"
             : "hidden"
         }
       >
