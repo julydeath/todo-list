@@ -1,14 +1,25 @@
 import React, { useRef, useState } from "react";
 import Todos from "./Todos";
+import { nanoid } from "nanoid";
 
 const TodoInput = () => {
   const inputRef = useRef();
   const [todos, setTodos] = useState([]);
+  const [error, setError] = useState("");
+  console.log(todos);
 
   const handleSubmmit = (e) => {
     e.preventDefault();
-    setTodos([...todos, inputRef.current.value]);
+    if (inputRef.current.value === "") {
+      return setError("Input field empty");
+    }
+    setTodos([...todos, { id: nanoid(), task: inputRef.current.value }]);
     inputRef.current.value = "";
+  };
+
+  const todoList = (id) => {
+    const newlist = todos.filter((todo) => todo.id !== id);
+    setTodos(newlist);
   };
 
   return (
@@ -27,7 +38,7 @@ const TodoInput = () => {
           </button>
         </form>
       </div>
-      <Todos todos={todos} />
+      <Todos todos={todos} todoList={todoList} />
     </div>
   );
 };
