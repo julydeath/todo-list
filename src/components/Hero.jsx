@@ -1,4 +1,5 @@
 import React from "react";
+import { useUserAuth } from "./auth/UserAuth";
 
 const Hero = () => {
   return (

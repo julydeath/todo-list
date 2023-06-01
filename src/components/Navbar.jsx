@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
+import { useUserAuth } from "./auth/UserAuth";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const { logOut, user } = useUserAuth();
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="w-full flex justify-between h-20 items-center shadow-xl mx-auto">
         <div className="text-3xl font-bold mx-8">
-          <h1>TODO.</h1>
+          <h1 onClick={() => navigate("/")}>TODO.</h1>
         </div>
         <div className="flex items-center">
           <ul className="hidden md:flex px-8">
@@ -20,17 +24,30 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              className="text-gray-500 font-medium mx-6 pt-2 hover:text-gray-800"
+              className={
+                user
+                  ? "hidden"
+                  : "text-gray-500 font-medium mx-6 pt-2 hover:text-gray-800"
+              }
               to="/signup"
             >
               singup
             </Link>
-            <Link
-              className="font-medium mx-6 pt-2 bg-black text-white rounded-md p-2 hover:bg-slate-800"
-              to="/login"
-            >
-              Login
-            </Link>
+            {user ? (
+              <Link
+                className="font-medium mx-6 pt-2 bg-black text-white rounded-md p-2 hover:bg-slate-800"
+                onClick={() => logOut()}
+              >
+                Logout
+              </Link>
+            ) : (
+              <Link
+                className="font-medium mx-6 pt-2 bg-black text-white rounded-md p-2 hover:bg-slate-800"
+                to="/login"
+              >
+                Login
+              </Link>
+            )}
           </ul>
           <div className="mx-4 md:hidden z-10">
             {nav ? (
@@ -68,12 +85,21 @@ const Navbar = () => {
           >
             singup
           </Link>
-          <Link
-            className="my-4 border-b border-white py-2 hover:text-gray-500"
-            to="/login"
-          >
-            Login
-          </Link>
+          {user ? (
+            <Link
+              className="my-4 border-b border-white py-2 hover:text-gray-500"
+              onClick={() => logOut()}
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link
+              className="my-4 border-b border-white py-2 hover:text-gray-500"
+              to="/login"
+            >
+              Login
+            </Link>
+          )}
         </ul>
       </div>
     </div>

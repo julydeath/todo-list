@@ -11,25 +11,24 @@ export const UserAuthContext = createContext();
 
 export const UserAuthContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
+
   const signUp = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const logIn = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   const logOut = () => {
-    signOut(auth);
+    return signOut(auth);
   };
 
   useEffect(() => {
     const sub = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-    return () => {
-      sub();
-    };
+    return sub;
   }, []);
 
   return (
