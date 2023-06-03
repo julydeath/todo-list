@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TodoList from "./TodoList";
 import axios from "axios";
 import { useUserAuth } from "./auth/UserAuth";
@@ -10,7 +10,6 @@ const Todos = ({ todos, todoList }) => {
 
   const newTodo = async (id) => {
     todoList(id);
-    console.log(id)
     await deleteTodo(id)
   };
 

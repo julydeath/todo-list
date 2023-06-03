@@ -1,8 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "./auth/UserAuth";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const { user } = useUserAuth()
+
   return (
     <div className="max-w-[100$%] m-auto mt-20 grid lg:grid-cols-2">
       <div>
@@ -11,19 +14,19 @@ const Hero = () => {
             TODO APPLICATION
           </h1>
           <p className="md:text-xl py-2 pr-2 italic">
-            Simple ToDo using React, tailwind, Firebase and hasura .
+            Simple ToDo using React, Tailwind, Firebase and Hasura .
           </p>
         </div>
         <div className="p-6">
-          <button className="bg-black text-white px-6 py-2 rounded-lg mr-4 mt-3 hover:bg-black/80 hover:text-white">
-            Get Started
-          </button>
-          <button
+          {user ? <button
             className="text-black border border-black px-6 py-2 rounded-lg mt-3 hover:bg-gray-200"
             onClick={() => navigate("/todo")}
           >
             TODO'S
-          </button>
+          </button> : <button onClick={() => navigate("/login")} className="bg-black text-white px-6 py-2 rounded-lg mr-4 mt-3 hover:bg-black/80 hover:text-white">
+            Get Started
+          </button>}
+
         </div>
       </div>
       <div>

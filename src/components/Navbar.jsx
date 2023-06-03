@@ -9,11 +9,16 @@ const Navbar = () => {
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    await logOut()
+    navigate("/login")
+  }
+
   return (
     <div>
       <div className="w-full flex justify-between h-20 items-center shadow-xl mx-auto">
         <div className="text-3xl font-bold mx-8">
-          <h1 onClick={() => navigate("/")}>TODO.</h1>
+          <h1 onClick={() => navigate("/")} className="hover:cursor-pointer">TODO.</h1>
         </div>
         <div className="flex items-center">
           <ul className="hidden md:flex px-8">
@@ -31,12 +36,12 @@ const Navbar = () => {
               }
               to="/signup"
             >
-              singup
+              Singup
             </Link>
             {user ? (
               <Link
                 className="font-medium mx-6 pt-2 bg-black text-white rounded-md p-2 hover:bg-slate-800"
-                onClick={() => logOut()}
+                onClick={handleLogout}
               >
                 Logout
               </Link>
@@ -88,7 +93,7 @@ const Navbar = () => {
           {user ? (
             <Link
               className="my-4 border-b border-white py-2 hover:text-gray-500"
-              onClick={() => logOut()}
+              onClick={handleLogout}
             >
               Logout
             </Link>

@@ -66,7 +66,7 @@ const TodoInput = () => {
 
   if (loading) {
     return (
-      <h1 className="text-4xl text-center items-center">Loading ...</h1>
+      <h1 className="text-4xl text-center items-center mt-6">Loading ...</h1>
     )
   }
 
